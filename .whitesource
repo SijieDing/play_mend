@@ -2,6 +2,7 @@
   "scanSettings": {
     "configMode": "LOCAL",
     "enableIaC": "true",
-    "enableLicenseViolations": false
+    "enableLicenseViolations": false,
+    "baseBranches": ["main"]
   }
 }
