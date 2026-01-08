@@ -1,2 +1,2 @@
 # trigger scan
-bjoern==3.2.0
+bjoern==3.3.0
