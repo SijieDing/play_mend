@@ -1,3 +1,5 @@
+jwt
+bjoern==3.2.1
 blinker==1.6.2
 certifi==2024.8.30
 charset-normalizer==3.3.0
