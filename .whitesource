@@ -5,20 +5,10 @@
     "enableLicenseViolations": false,
     "baseBranches": ["main"]
   },
-  "scanSettingsSAST": {
-    "enableScan": true,
-    "scanPullRequests": true,
-    "incrementalScan": false,
-    "baseBranches": ["main"]
-  },
   "checkRunSettings": {
     "vulnerableCheckRunConclusionLevel": "failure",
     "displayMode": "baseline",
     "useMendCheckNames": true
-  },
-  "checkRunSettingsSAST": {
-    "checkRunConclusionLevel": "failure",
-    "severityThreshold": "high"
   },
   "issueSettings": {
     "minSeverityLevel": "LOW",
