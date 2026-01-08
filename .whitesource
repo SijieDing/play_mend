@@ -3,35 +3,5 @@
     "configMode": "LOCAL",
     "enableIaC": "true",
     "enableLicenseViolations": false
-  },
-  "scanSettingsSAST": {
-    "enableScan": true,
-    "scanPullRequests": true,
-    "incrementalScan": false
-  },
-  "checkRunSettings": {
-    "vulnerableCheckRunConclusionLevel": "failure",
-    "displayMode": "baseline",
-    "useMendCheckNames": true
-  },
-  "checkRunSettingsSAST": {
-    "checkRunConclusionLevel": "failure",
-    "severityThreshold": "high"
-  },
-  "issueSettings": {
-    "minSeverityLevel": "LOW",
-    "issueType": "DEPENDENCY"
-  },
-  "issueSettingsSAST": {
-    "issueType": "repo",
-    "minSeverityLevel": "high"
-  },
-  "remediateSettings": {
-    "workflowRules": {
-      "enabled": true
-    },
-    "transitiveRemediation": true,
-    "enableRenovate": true,
-    "extends": ["config:base"]
   }
 }
