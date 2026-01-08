@@ -1,0 +1,1842 @@
+# value of DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_level: INFO
+plot: false
+
+opensearch:
+  - host: 9.114.195.47
+    port: 9200
+    protocol: http
+    # user: admin
+    # password: admin
+    # - host: tvt2025.pok.stglabs.ibm.com
+    #   # - host: opensearch-cluster.controlplane.svc.cluster.local
+    #   port: 32000
+    #   protocol: https
+    #   user: admin
+    #   password: 2S1ql7YUsyNg17xWdNfKtWGyFenIaO
+    #   tls:
+    #       ca: /home/chanyp/ssl_ca/tvt2025_cacert_jack.crt
+
+kafka:
+  - broker: 9.114.195.47
+    port: 9092
+      # mtls:
+      #   enabled: true
+      #   server:
+      #     ca: /path/to/ca.crt
+      #   client:
+      #     key: /path/to/tls.key
+      #     cert: /path/to/tls.crt
+
+opensearch_indexes:
+    read: unite-metrics
+    # for write
+    baseline: unite-baselines-metrics
+
+kafka_topics:
+    anomalies: zou.events.00.raw
+
+metrics:
+  - name: attributes.com.ibm.zou.metrics.DLY_AT_MAXSOCKETS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.IN_SOCK_CREATED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.IN_SOCK_CUR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.IN_SOCK_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LU_LOGGED_ON_CNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LU_LOGGED_ON_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MAXSOCKETS_REACHED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MAXSOCK_CURDLY_TIM
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MAXSOCK_DLY_TIME
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.OUT_PSOCK_CUR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.OUT_PSOCK_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.OUT_SOCK_CLOSED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.OUT_SOCK_CREATED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.OUT_SOCK_CUR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.OUT_SOCK_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PERCENT_MAX
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOUT_MAXSOCKETS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOUT_MAXSOCK_CUR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOUT_MAXSOCK_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_COMM
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.DST_CT_CICSTCB
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DISP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.DST_CT_NONCICSTCB
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DISP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SRB_CPU_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DISP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TASKS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DISP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TASKS_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DISP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TCB_CPU_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DISP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRN_DUMPS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DUMP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRN_DUMPS_SUPPR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_DUMP
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CUSA_DSA_USED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.ECDSA_DSA_USED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.ESDSA_DSA_USED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.EUDSA_DSA_USED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.GSDSA_DSA_USED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.GUDSA_DSA_USED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SOS_CNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SOS_TIME
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBSP_COMMON_CUR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBSP_COMMON_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBSP_COMMON_TOT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBSP_UNIQUE_CUR
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBSP_UNIQUE_PEAK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBSP_UNIQUE_TOT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_STOR
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CPU_TIME
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.S_TRAN_ENDED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_COUNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_CURRENT_Q_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_CUR_QUEUED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_PEAK_QUEUED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_TIMES_AT_MXT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_TOTAL_ACTIVE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_TOTAL_DELAYED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TRAN_TOTAL_Q_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.U_TRAN_RESP_AVG
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF110_2_TASKS
+        resource.com.ibm.zou.cdp.resource_type: CICSRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.ACTIVE_CI_CREATED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.db.system
+      - resource.db.db2.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF100_0_SYS
+        resource.com.ibm.zou.cdp.resource_type: Db2Subsystem
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOG_WRITE_IO_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.db.system
+      - resource.db.db2.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF100_0_SYS
+        resource.com.ibm.zou.cdp.resource_type: Db2Subsystem
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CUR_OPEN_DATASETS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.db.system
+      - resource.db.db2.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF100_1_BIND
+        resource.com.ibm.zou.cdp.resource_type: Db2Subsystem
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TEST_DEQUEUES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys: []
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDBCTL
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TEST_ENQUEUES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys: []
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDBCTL
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.UPDATE_DEQUEUES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys: []
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDBCTL
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.UPDATE_ENQUEUES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys: []
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDBCTL
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CMD_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CMD_DEQUEUES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.DLI_TOTAL_IO
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.ESAF_TOTAL_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.EXCLUS_ENQ_WAITS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.FP_FLD_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.FP_POS_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.GCMD_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MSG_GN_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MSG_GU_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MSG_PURGE_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.RLSE_CALLS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TEST_ENQ_WAITS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.dependent_region.identifier
+      - resource.z_os.jes.job.name
+      - resource.host.arch
+      - resource.host.id
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_56FA
+        resource.com.ibm.zou.cdp.resource_type: IMSDependentRegion
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.QP_BUFFERS_LOCKED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.sub_pool.number
+      - resource.ims.sub_pool.storage.type
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_4502
+        resource.com.ibm.zou.cdp.resource_type: IMSSubPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.QP_PURGE_REQUESTS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.sub_pool.number
+      - resource.ims.sub_pool.storage.type
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_4502
+        resource.com.ibm.zou.cdp.resource_type: IMSSubPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.QP_PURGE_WRITES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.sub_pool.number
+      - resource.ims.sub_pool.storage.type
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_4502
+        resource.com.ibm.zou.cdp.resource_type: IMSSubPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.QP_QMGR_LOCATES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.sub_pool.number
+      - resource.ims.sub_pool.storage.type
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_4502
+        resource.com.ibm.zou.cdp.resource_type: IMSSubPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.QP_QMGR_LOC_ALTERS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.sub_pool.number
+      - resource.ims.sub_pool.storage.type
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_4502
+        resource.com.ibm.zou.cdp.resource_type: IMSSubPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.QP_WRITE_REQUESTS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.ims.sub_pool.number
+      - resource.ims.sub_pool.storage.type
+      - resource.ims.subsystem.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_IMS_4502
+        resource.com.ibm.zou.cdp.resource_type: IMSSubPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.ASYNCH_WRT_OPER
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.HASH_CHAIN_CHG
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NO_AVAIL_BUF
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_BUFFERS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PAGE_GETREQ_NOTFND
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PAGE_READ_DASD
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PAGE_UPDATES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PAGE_WRITE_DASD
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SYNCH_PAGE_WRT_OP
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.buffer_pool.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_215_BP
+        resource.com.ibm.zou.cdp.resource_type: MQBufferPool
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NONPERS_USED_PAGES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.page_set.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQPageSet
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PERS_USED_PAGES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.page_set.id
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQPageSet
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MSG_CNT_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.queue.name
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueue
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.BYTES_COMP
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.BYTES_UNCOMP
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CHKPOINT_INVOKED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.COMP_FAIL
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.COMP_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.DECOMP_FAIL
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.DECOMP_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.DUAL_LOG_REWRITE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LAHEAD_TAP_ATTEMPT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LAHEAD_TAP_FAILED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC1_1_QJSTIOCI
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC1_1_QJSTIOCOUNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC1_2_QJSTIOCI
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC1_2_QJSTIOCOUNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC2_1_QJSTIOCI
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC2_1_QJSTIOCOUNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC2_2_QJSTIOCI
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LC2_2_QJSTIOCOUNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOGWRITE_REQ_PAGED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOGWRITE_REQ_SCHED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOG_CIS_WRITE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOG_REQ_SUS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOG_REQ_WRITE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.READ_REQ_ACTIVE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.READ_REQ_ARCHIVE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.READ_REQ_BUF
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.READ_REQ_DELAYED
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.READ_REQ_UNAVAIL
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.WRITER_SLEEP_TIME
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.WRITE_COUNT_FORCE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.WRITE_REQ_NO_WAIT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.XACT_ROLLBACK
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_1_LOG
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CLOSER_HANDLE_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_CALLBACKS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_CTL
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_MQ_CLOSE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_MQ_INQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_MQ_OPEN
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_MQ_SET
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_NONPERS_BYTES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_NONPERS_PUTS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_PERS_BYTES
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_PERS_PUTS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_PUB_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_STAT_REQ
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_SUBSCRIPTS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.NUM_SUB_REQS
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+      - resource.messaging.system
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2
+        resource.com.ibm.zou.cdp.resource_type: MQQueueManager
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MQCPL_MAX_ENT_US
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.queue_sharing_group.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2_CF
+        resource.com.ibm.zou.cdp.resource_type: MQQueueSharingGroup
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MQCPL_STRUCT_NM
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.messaging.system
+      - resource.messaging.ibmmq.queue_sharing_group.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF115_2_CF
+        resource.com.ibm.zou.cdp.resource_type: MQQueueSharingGroup
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.FAIL_PATH_BUSY
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_LOCAL
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SUBCH_CONT_COUNT
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_LOCAL
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.FALSE_LOCK_CONTENTION
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_REQ
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LOCK_CONTENTION
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_REQ
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.PEER_LINK_NOT_AVAIL
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_REQ
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.REQ_DELAY_SERIAL
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_REQ
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SYNCH_TO_ASYNCH
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF74_4_REQ
+        resource.com.ibm.zou.cdp.resource_type: ZCouplingFacility
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.SRB_DISPATCH
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF70_1_CPU
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TCB_DISPATCH
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF70_1_CPU
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CPU_DISPATCH_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF70_1_LPAR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.CPU_EFF_DISP_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF70_1_LPAR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.LP_ONLINE_SEC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF70_1_LPAR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MSU_4HRA
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF70_1_LPAR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: 'attributes.com.ibm.zou.metrics.MAX_CSA_FREE '
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.MAX_CSA_FREE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_CSA_ALLOC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_CSA_USE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_ECSA_USE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_ESQA_ALLOC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_ESQA_USE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_SQA_ALLOC
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+  - name: attributes.com.ibm.zou.metrics.TOT_SQA_USE
+    timestamp: '@timestamp'
+    uuid: resource.uuid
+    group_bys:
+      - resource.host.arch
+      - resource.host.id
+      - resource.os.type
+    conditions:
+        resource.com.ibm.zou.cdp.source.name: ZOU_SMF78_2_VSTOR
+        resource.com.ibm.zou.cdp.resource_type: zOS
+    const: 0
+    threshold: 1
+training:
+    date_range:
+        from: 30 days
+        to: now
+    global_training_exclusion:
+      - from: 2025-02-20T00:00
+        to: 2025-02-21T00:12
+      - from: "15:00:00"
+        to: "16:00:00"
+    # 15 minutes
+    interval: 15
+    # rolling window size
+    rolling_window_size: 5
+    k_raw: 6
+    pre_training_outlier_lower_quantile: 0.01
+    pre_training_outlier_upper_quantile: 0.99
+
+change_detection:
+    date_range:
+        from: 1h
+        to: now
+
+lead_function:
+    num_threads: 5
+
+training_lead_function:
+    num_threads: 5

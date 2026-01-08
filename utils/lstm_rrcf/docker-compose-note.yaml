@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  python-app:
+    image: nab-demo:latest
+    command: python /app/utils/lstm_rrcf/dev_tool/dev_tool.py -c /app/libs/fake_data_generator_pkg/fake_data_generator/transaction_rate_csvfile.yaml
+    stop_grace_period: 30s
+    volumes:
+      - ../../utils/lstm_rrcf/dev_tool/:/app/utils/lstm_rrcf/dev_tool
+      - ../../libs:/app/libs
+    environment:
+      - NAB_DETECTION_CONFIG=/app/libs/nab_detection_pkg/aiops_nab_detection/sample-config-dev.yaml
+      - AP_ANOMALY_DETECTION_FUNCTION_CONFIG=/app/libs/nab_detection_pkg/aiops_nab_detection/sample-config-dev.yaml
+      - ENABLE_RDEBUG=true
+      - SAVE_RESULT_LOCAL=true
+      - SAVE_RESULT_LOCAL=
+      - LOCAL_RESULT_FILE=/app/libs/fake_data_generator_pkg/fake_data_generator/results.csv
+      - LOCAL_RESULT_KAFKA_FILE=/app/libs/fake_data_generator_pkg/fake_data_generator/results_kafka.log
+    ports:
+      - "8888:8888"
+      - "5678:5678"  # Debugpy port
+  redis:
+    image: redis:latest
+    container_name: redis_dev
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_APPENDONLY=no
+    restart: unless-stopped
+  redis-insight:
+    image: redis/redisinsight:latest
+    user: "0:0"
+    restart: always
+    ports:
+      - "5540:5540"
+    volumes:
+      - /redis-insight:/data

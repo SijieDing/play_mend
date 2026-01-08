@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  python-app:
+    image: nab-demo:latest
+    # cap_add:
+    #   - SYS_PTRACE
+    # security_opt:
+    #   - seccomp=unconfined
+    #   - apparmor=unconfined
+    # command: python /app/utils/lstm_rrcf/flask_server/watcher.py
+    command: python /app/utils/lstm_rrcf/flask_server/server_v2/server.py
+    stop_grace_period: 30s
+    volumes:
+      - ../../utils/lstm_rrcf/flask_server/:/app/utils/lstm_rrcf/flask_server
+      - ../../libs:/app/libs
+      - /Users/ericd/escloud/z-aiops-unite/development/CIO_Credential:/etc/credentials
+      - ../../projects/nab_detection:/app/projects/nab_detection
+    environment:
+      - NAB_DETECTION_CONFIG=/etc/credentials/config.yaml
+      - AP_ANOMALY_DETECTION_FUNCTION_CONFIG=/etc/credentials/config.yaml
+      - ENABLE_RDEBUG=true
+      - ENV_NAME=ERIC_LOCAL
+      - SAVE_RESULT_LOCAL=true
+      - LOCAL_RESULT_FILE=/app/libs/nab_detection_pkg/aiops_nab_detection/results.csv
+      - LOCAL_RESULT_KAFKA_FILE=/app/libs/nab_detection_pkg/aiops_nab_detection/results_kafka.log
+      - FILE_PATH=/app/projects/nab_detection/nab_detection.py
+      - FUNCTION_NAME=main
+      - PYTHONPATH=/app/libs/nab_detection_pkg:/app/libs/aiops_unite_pkg
+      - FISSION_ENV_CONFIG=/app/utils/lstm_rrcf/flask_server/server_v2/fission_config.yaml
+
+    ports:
+      - "8888:8888"
+      - "5678:5678"  # Debugpy port
+  redis:
+    image: redis:latest
+    container_name: redis_dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis_data:/data
+    environment:
+      - REDIS_APPENDONLY=yes
+    restart: unless-stopped
+  redis-insight:
+    image: redis/redisinsight:latest
+    user: "0:0"
+    restart: always
+    ports:
+      - "5540:5540"
+    volumes:
+      - /redis-insight:/data
