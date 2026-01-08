@@ -1,0 +1,10 @@
+Flask~=3.0
+aiops_change_detection==0.1
+
+[lint]
+black~=24.4
+flake8~=7.0
+flake8-pyproject~=1.2
+isort~=5.13
+pylint~=3.2
+pyright~=1.1
