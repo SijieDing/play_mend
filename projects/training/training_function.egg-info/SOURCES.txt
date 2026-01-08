@@ -1,7 +1,0 @@
-README.md
-pyproject.toml
-training_function.egg-info/PKG-INFO
-training_function.egg-info/SOURCES.txt
-training_function.egg-info/dependency_links.txt
-training_function.egg-info/requires.txt
-training_function.egg-info/top_level.txt
