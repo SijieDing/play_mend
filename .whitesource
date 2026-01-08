@@ -1,6 +1,5 @@
 {
   "scanSettings": {
-    "configMode": "LOCAL",
     "baseBranches": ["main"]
   }
 }
