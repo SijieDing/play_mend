@@ -1,0 +1,417 @@
+# value of DEBUG, INFO, WARNING, ERROR, CRITICAL
+log_level: debug
+plot: false
+
+opensearch:
+  - host: 9.114.195.47
+    port: 9200
+    protocol: http
+    # user: admin
+    # password: admin
+    # tls:
+    #   ca: ./configs/ca.crt
+
+kafka:
+  - broker: 9.114.195.47
+    port: 9092
+    # mtls:
+    #   enabled: true
+    #   server:
+    #     ca: /path/to/ca.crt
+    #   client:
+    #     key: /path/to/tls.key
+    #     cert: /path/to/tls.crt
+
+opensearch_indexes:
+  read: unite-metrics
+  # for write
+  baseline: unite-baselines-metrics
+
+kafka_topics:
+  anomalies: zou.events.00.raw
+
+metrics:
+  ############# zOS ################
+  - name: attributes.com.ibm.zou.metrics.total_srb_pct
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    # ideally we should group by uuid
+    group_bys:
+      - resource.host.id
+      - resource.host.arch
+      - resource.os.type
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: syscpuutil
+      resource.com.ibm.zou.resource_type: zOS
+    threshold: 1
+    const: 0
+    training_exclusions:
+    - from: 03:00:00
+      to: 05:00:00
+    - from: "2024-11-03T13:00:00Z"
+      to: "2024-11-03T14:00:00Z"
+  - name: attributes.com.ibm.zou.metrics.total_tcb_pct
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.host.id
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: syscpuutil
+      resource.com.ibm.zou.resource_type: zOS
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.average_cpu_percent
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.host.id
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: syscpuutil
+      resource.com.ibm.zou.resource_type: zOS
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.four_hour_msus
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.host.id
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: syscpuutil
+      resource.com.ibm.zou.resource_type: zOS
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.in_use
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.host.id
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: comstor
+      resource.com.ibm.zou.resource_type: zOS
+      # TODO: change this comstor.area to be part of group_by
+      resource.com.ibm.zou.omegamon.comstor.area: CSA
+    threshold: 1
+    const: 0
+  ############# CPC ################
+  - name: attributes.com.ibm.zou.metrics.cpc_dispatch_time
+    # NOTES: this ODP table is not primarily for CPC,
+    #        we receive a lot of duplicated anomalies with same CPC but different LPAR id
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.hw.cpc.serial_number
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: lpclust
+      resource.com.ibm.zou.resource_type: CPC
+      resource.com.ibm.zou.omegamon.lpclust.lpar_name: _CPTotal
+      # TODO: change this processor_class to be part of group_by
+      resource.com.ibm.zou.omegamon.lpclust.processor_class: Std
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.physical_pct_standard_cp
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.hw.cpc.serial_number
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mplxcpcsum
+      resource.com.ibm.zou.resource_type: CPC
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.physical_pct_ifl
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.hw.cpc.serial_number
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mplxcpcsum
+      resource.com.ibm.zou.resource_type: CPC
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.physical_pct_ziip
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.hw.cpc.serial_number
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mplxcpcsum
+      resource.com.ibm.zou.resource_type: CPC
+    threshold: 1
+    const: 0
+  ############# CF ################
+  - name: attributes.com.ibm.zou.metrics.asynchronous_requests_per_minute
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mcfsys
+      resource.com.ibm.zou.resource_type: ZCouplingFacility
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.synchronous_requests_per_minute
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mcfsys
+      resource.com.ibm.zou.resource_type: ZCouplingFacility
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.total_request_cnt_this_interval
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mcfsys
+      resource.com.ibm.zou.resource_type: ZCouplingFacility
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.cpu_percent
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mcfsys
+      resource.com.ibm.zou.resource_type: ZCouplingFacility
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.ios_per_second
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.z_os.cf.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: mcfsys
+      resource.com.ibm.zou.resource_type: ZCouplingFacility
+    threshold: 1
+    const: 0
+  # TODO: add mcfstrct.lock_table_entry_contention_count, group by both cf.name and cf.structure.name
+  # TODO: add mcfstrct.dump_contention, group by both cf.name and cf.structure.name
+  ############# CICS ################
+  - name: attributes.com.ibm.zou.metrics.transaction_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: cicsrov
+      resource.com.ibm.zou.resource_type: CICSRegion
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.maximum_tasks_percent
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.cics.region.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: cicsrov
+      resource.com.ibm.zou.resource_type: CICSRegion
+    threshold: 1
+    const: 0
+  ############# DB2 ################
+  - name: attributes.com.ibm.zou.metrics.active_log_cis_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_srm_log
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.value
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: statlogs
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+      resource.com.ibm.zou.omegamon.statlogs.sequence: Log_Writes
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.avg_thd_footprint
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: real225
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.edm_utilization
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_sy_exc
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.dist_receive_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_sy_exc
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.commit_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_srm_sub
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.abort_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_srm_sub
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.phase1_commit_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_srm_sub
+      resource.com.ibm.zou.resource_name: DCC1
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.single_phase_commit_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_srm_sub
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.terminate_thread_rate
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: dp_srm_sub
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.ct_loads
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: edmpool
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.pt_loads
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: edmpool
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.dbds_pct
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.db.db2.subsystem.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: edmpool
+      resource.db.system: db2
+      resource.com.ibm.zou.resource_type: Db2Subsystem
+    threshold: 1
+    const: 0
+    training_exclusions:
+    - from: "03:00:00"
+      to: "05:00:00"
+    - from: "2025-02-21T00:00"
+      to: "2025-02-22T00:12"
+  ############# MQ ################
+  - name: attributes.com.ibm.zou.metrics.mqgets_per_second
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: qmlhmm
+      resource.messaging.system: ibmmq
+      resource.com.ibm.zou.resource_type: MQQueueManager
+    threshold: 1
+    const: 0
+  - name: attributes.com.ibm.zou.metrics.mqputs_per_second
+    timestamp: "@timestamp"
+    uuid: "resource.uuid"
+    group_bys:
+      - resource.messaging.ibmmq.queue_manager.name
+    conditions:
+      resource.com.ibm.zou.omegamon.table_name: qmlhmm
+      resource.messaging.system: ibmmq
+      resource.com.ibm.zou.resource_type: MQQueueManager
+    threshold: 1
+    const: 0
+
+training:
+  date_range:
+    from: "60 days"
+    to: now
+  global_training_exclusion:
+    - from: "2025-02-20T00:00"
+      to: "2025-02-21T00:12"
+    - from: "15:00:00"
+      to: "16:00:00"
+  # 15 minutes
+  interval: 15
+  # rolling window size
+  rolling_window_size: 5
+  k_raw: 6
+  pre_training_outlier_lower_quantile: 0.01
+  pre_training_outlier_upper_quantile: 0.99
+
+
+change_detection:
+  date_range:
+    from: "1h"
+    to: now
+
+lead_function:
+  num_threads: 5
+
+training_lead_function:
+  num_threads: 5
