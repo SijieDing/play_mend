@@ -1,5 +1,8 @@
 {
   "scanSettings": {
     "baseBranches": ["main"]
+  },
+  "python": {
+    "requirementsFileIncludes": ["**/requirements.txt"]
   }
 }
