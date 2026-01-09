@@ -3,6 +3,11 @@
   "scanSettings": {
     "baseBranches": ["main"]
   },
+  "checkRunSettings": {
+    "vulnerableCheckRunConclusionLevel": "failure",
+    "displayMode": "baseline",
+    "useMendCheckNames": true
+  },
   "python": {
     "requirementsFileIncludes": ["pyproject.toml"]
   }
