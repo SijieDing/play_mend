@@ -2,4 +2,4 @@
 bjoern==3.3.0
 blinker==1.6.2
 tensorflow==2.20.0
-urllib3==1.26.19
+urllib3==1.26.20
